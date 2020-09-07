@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
   
         cam = Camera.main.transform;
-        //cam.parent = transform;
 
         walkSpeed = playerConfig.walkSpeed;
         rotateSpeed = playerConfig.rotateSpeed;
