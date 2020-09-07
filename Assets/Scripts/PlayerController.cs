@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         camPos.y = playerConfig.cameraHeight;
         cam.position = camPos;
 
-        float tiltFactor = (playerConfig.cameraTiltSpeed * -Input.GetAxis("Mouse Y") * Time.deltaTime);
+        float tiltFactor = playerConfig.cameraTiltSpeed * -Input.GetAxis("Mouse Y") * Time.deltaTime;
         float clampedXRotation = Mathf.Clamp(cam.transform.eulerAngles.x + tiltFactor,playerConfig.cameraTiltRange.x, playerConfig.cameraTiltRange.y);
         cam.eulerAngles = new Vector3(clampedXRotation, transform.eulerAngles.y, 0);
     }
