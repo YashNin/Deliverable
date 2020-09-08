@@ -52,8 +52,10 @@ public class PlayerController : MonoBehaviour
         var camPos = (transform.forward.normalized * - playerConfig.cameraDistance) + transform.position;
         camPos.y = playerConfig.cameraHeight;
         cam.position = camPos;
-        cam.eulerAngles += new Vector3(playerConfig.cameraTiltSpeed * -Input.GetAxis("Mouse Y") * Time.deltaTime, 0, 0);
-        cam.transform.eulerAngles = new Vector3(Mathf.Clamp(cam.transform.eulerAngles.x, playerConfig.cameraTiltRange.x, playerConfig.cameraTiltRange.y), transform.eulerAngles.y, 0);
+
+        float tiltFactor = (playerConfig.cameraTiltSpeed * -Input.GetAxis("Mouse Y") * Time.deltaTime);
+        float clampedXRotation = Mathf.Clamp(cam.transform.eulerAngles.x + tiltFactor,playerConfig.cameraTiltRange.x, playerConfig.cameraTiltRange.y);
+        cam.eulerAngles = new Vector3(clampedXRotation, transform.eulerAngles.y, 0);
     }
 
 }
